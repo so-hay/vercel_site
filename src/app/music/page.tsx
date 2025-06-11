@@ -1,6 +1,8 @@
 "use client";
 import { useEffect,useRef, useState } from "react";
 import Home from "../page";
+import { Head } from "next/document";
+import Header from "../components/Header";
 
 type MusicItem = {
   id: number;
@@ -106,7 +108,7 @@ export default function MusicPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
-      <Home/>
+      <Header/>
       <h1 className="text-2xl font-bold mb-6">🎵 お気に入り音楽</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {musicList.map((music) => (
