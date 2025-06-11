@@ -24,14 +24,14 @@ const musicList: MusicItem[] = [
     id: 2,
     title: "面白きかな人生",
     artist: "大橋トリオ",
-    image: "/CD/song2.jpg",
+    image: "/CD/omosiroki.jpg",
     audio: "/song/面白きかな人生.mp3",
   },
   {
     id: 3,
     title: "VENEUS",
     artist: "大橋トリオ",
-    image: "/CD/SALING!!!!!.jpg",
+    image: "/CD/VENEUS.jpg",
     audio: "/song/VENUS.mp3",
   },
   {
