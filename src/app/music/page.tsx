@@ -1,5 +1,6 @@
 "use client";
-import {  useEffect,useRef, useState } from "react";
+import { useEffect,useRef, useState } from "react";
+import Home from "../page";
 
 type MusicItem = {
   id: number;
@@ -13,16 +14,51 @@ const musicList: MusicItem[] = [
   {
     id: 1,
     title: "SALING!!!!!",
-    artist: "Artist A",
-    image: "/music/SALING!!!!!.jpg",
-    audio: "/music/song1.mp3",
+    artist: "浦島坂田船",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/SALING!!!!!.mp3",
   },
   {
     id: 2,
     title: "面白きかな人生",
     artist: "大橋トリオ",
-    image: "/music/song2.jpg",
-    audio: "/music/面白きかな人生.mp3",
+    image: "/CD/song2.jpg",
+    audio: "/song/面白きかな人生.mp3",
+  },
+  {
+    id: 3,
+    title: "VENEUS",
+    artist: "大橋トリオ",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/VENUS.mp3",
+  },
+  {
+    id: 4,
+    title: "Starry Cruise",
+    artist: "浦島坂田船",
+    image: "/CD/V-enus.jpg",
+    audio: "/song/Starry Cruise.mp3",
+  },
+  {
+    id: 5,
+    title: "SALING!!!!!",
+    artist: "Artist A",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/song1.mp3",
+  },
+  {
+    id: 6,
+    title: "SALING!!!!!",
+    artist: "Artist A",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/song1.mp3",
+  },
+  {
+    id: 7,
+    title: "SALING!!!!!",
+    artist: "Artist A",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/song1.mp3",
   },
 ];
 
@@ -70,6 +106,7 @@ export default function MusicPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
+      <Home/>
       <h1 className="text-2xl font-bold mb-6">🎵 お気に入り音楽</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {musicList.map((music) => (
