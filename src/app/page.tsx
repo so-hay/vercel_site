@@ -29,11 +29,11 @@ const carouselItems = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-mono mb-6">お気に入りカテゴリ</h1>
-
+    <main className="min-h-screen bg-blue-300 p-8">
+      <h1 className=" text-3xl font-mono mb-6">お気に入りカテゴリ</h1>
+{/* 
       
-    <div>
+    <div>スライダー
       <div {...sliderSettings}>
         {carouselItems.map((carouselItem, index) => (
           <div key={index}>
@@ -45,7 +45,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-    </div>
+    </div> */}
 
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
