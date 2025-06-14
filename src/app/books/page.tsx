@@ -60,6 +60,13 @@ const bookList: BookItem[] = [
     image: "/book/holes.jpg",
     text: "/song/song1.mp3",
   },
+    {
+    id: 8,
+    title: "SALING!!!!!",
+    artist: "Artist A",
+    image: "/book/kateikyousitu.jpg",
+    text: "/song/song1.mp3",
+  },
 ];
 
 export default function books() {
