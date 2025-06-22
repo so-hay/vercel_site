@@ -62,6 +62,20 @@ const musicList: MusicItem[] = [
     image: "/CD/SALING!!!!!.jpg",
     audio: "/song/song1.mp3",
   },
+    {
+    id: 8,
+    title: "恋するライダー",
+    artist: "Artist A",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/song1.mp3",
+  },
+    {
+    id: 9,
+    title: "12時の針がおちたら",
+    artist: "Artist A",
+    image: "/CD/SALING!!!!!.jpg",
+    audio: "/song/song1.mp3",
+  },
 ];
 
 export default function MusicPage() {
