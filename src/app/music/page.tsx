@@ -1,7 +1,5 @@
 "use client";
 import { useEffect,useRef, useState } from "react";
-import Home from "../page";
-import { Head } from "next/document";
 import Header from "../components/Header";
 
 type MusicItem = {
@@ -9,76 +7,11 @@ type MusicItem = {
   title: string;
   artist: string;
   image: string;
-  audio: string;
+  fileUrl: string;
 };
 
-const musicList: MusicItem[] = [
-  {
-    id: 1,
-    title: "SALING!!!!!",
-    artist: "浦島坂田船",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/SALING!!!!!.mp3",
-  },
-  {
-    id: 2,
-    title: "面白きかな人生",
-    artist: "大橋トリオ",
-    image: "/CD/omosiroki.jpg",
-    audio: "/song/面白きかな人生.mp3",
-  },
-  {
-    id: 3,
-    title: "VENEUS",
-    artist: "大橋トリオ",
-    image: "/CD/VENEUS.jpg",
-    audio: "/song/VENUS.mp3",
-  },
-  {
-    id: 4,
-    title: "Starry Cruise",
-    artist: "浦島坂田船",
-    image: "/CD/V-enus.jpg",
-    audio: "/song/Starry Cruise.mp3",
-  },
-  {
-    id: 5,
-    title: "SALING!!!!!",
-    artist: "Artist A",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/song1.mp3",
-  },
-  {
-    id: 6,
-    title: "SALING!!!!!",
-    artist: "Artist A",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/song1.mp3",
-  },
-  {
-    id: 7,
-    title: "SALING!!!!!",
-    artist: "Artist A",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/song1.mp3",
-  },
-    {
-    id: 8,
-    title: "恋するライダー",
-    artist: "Artist A",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/song1.mp3",
-  },
-    {
-    id: 9,
-    title: "12時の針がおちたら",
-    artist: "Artist A",
-    image: "/CD/SALING!!!!!.jpg",
-    audio: "/song/song1.mp3",
-  },
-];
-
 export default function MusicPage() {
+  const [musicList, setMusicList] = useState<MusicItem[]>([]);
   const audioRefs = useRef<Record<number, HTMLAudioElement | null>>({});
   const [playingId, setPlayingId] = useState<number | null>(null);
   const [progress, setProgress] = useState<Record<number, number>>({});
@@ -105,20 +38,31 @@ export default function MusicPage() {
   };
 
   // 再生バー更新
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newProgress: Record<number, number> = {};
-      Object.entries(audioRefs.current).forEach(([key, audio]) => {
-        if (audio && audio.duration > 0) {
-          newProgress[Number(key)] =
-            (audio.currentTime / audio.duration) * 100;
-        }
-      });
-      setProgress(newProgress);
-    }, 500);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const newProgress: Record<number, number> = {};
+  //     Object.entries(audioRefs.current).forEach(([key, audio]) => {
+  //       if (audio && audio.duration > 0) {
+  //         newProgress[Number(key)] =
+  //           (audio.currentTime / audio.duration) * 100;
+  //       }
+  //     });
+  //     setProgress(newProgress);
+  //   }, 500);
 
-    return () => clearInterval(interval);
+  //   return () => clearInterval(interval);
+  // }, []);
+
+
+    useEffect(() => {
+    const fetchMusic = async () => {
+      const res = await fetch("/api/music");
+      const data = await res.json();
+      setMusicList(data);
+    };
+    fetchMusic();
   }, []);
+
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
@@ -126,38 +70,34 @@ export default function MusicPage() {
       <h1 className="text-2xl font-bold mb-6">🎵 お気に入り音楽</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {musicList.map((music) => (
-          <div
-            key={music.id}
-            className="bg-white p-4 rounded shadow cursor-pointer group"
-            onClick={() => togglePlay(music.id)}
-          >
-            <div
-              className={`w-full h-48 rounded-full overflow-hidden transition-transform duration-500 ${
-                playingId === music.id ? 'animate-spin-slow' : ''
-              }`}
-            >
-              <img
-                src={music.image}
-                alt={music.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <h2 className="mt-2 font-semibold">{music.title}</h2>
-            <p className="text-sm text-gray-600">{music.artist}</p>
+        <div
+          key={music.id}
+          className="bg-white p-4 rounded shadow cursor-pointer group"
+          onClick={() => togglePlay(music.id)}
+        >
+        <div className={`w-full h-48 rounded-full overflow-hidden transition-transform duration-500 ${
+            playingId === music.id ? 'animate-spin-slow' : ''
+          }`}
+        >
+          <img
+            src={music.image}
+            alt={music.title}
+            className="w-full h-full object-cover"
+          />
+          </div>
+          <h2 className="mt-2 font-semibold">{music.title}</h2>
+          <p className="text-sm text-gray-600">{music.artist}</p>
 
-            <div className="w-full h-2 bg-gray-200 rounded mt-2">
-              <div
-                className="h-2 bg-blue-500 rounded transition-all duration-300"
-                style={{ width: `${progress[music.id] || 0}%` }} // ✅ インライン許容
-              />
-            </div>
-
-
+          <div className="w-full h-2 bg-gray-200 rounded mt-2">
+            <div className="h-2 bg-blue-500 rounded transition-all duration-300"
+              style={{ width: `${progress[music.id] || 0}%` }} // ✅ インライン許容
+            />
+          </div>
             <audio
               ref={(el) => {
                 audioRefs.current[music.id] = el;
               }}
-              src={music.audio}
+              src={music.fileUrl}
             />
           </div>
         ))}
