@@ -7,7 +7,7 @@ type MusicItem = {
   title: string;
   artist: string;
   image: string;
-  fileUrl: string;
+  audio: string;
 };
 
 export default function MusicPage() {
@@ -96,7 +96,7 @@ export default function MusicPage() {
               ref={(el) => {
                 audioRefs.current[music.id] = el;
               }}
-              src={music.fileUrl}
+              src={music.audio}
             />
           </div>
         ))}
