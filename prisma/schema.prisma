@@ -1,17 +1,29 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Music {
+  id        Int      @id @default(autoincrement())
+  title     String
+  artist    String
+  image     String //画像url or パス
+  audio     String //音源ファイルのurl or パス
+  createdAt DateTime @default(now())
+}
+
+model Book {
+  id        Int      @id @default(autoincrement())
+  title     String
+  author    String
+  cover     String //表紙画像url
+  summary   String
+  createdAt DateTime @default(now())
 }
 
 model Contact {
@@ -20,19 +32,4 @@ model Contact {
   email     String
   message   String
   createdAt DateTime @default(now())
-}
-
-model Books {
-  id        Int    @id @default(autoincrement())
-  title     String?
-  image     String
-  novelist  String?
-}
-
-model Music {
-  id       Int    @id @default(autoincrement())
-  title    String
-  fileUrl  String
-  artist   String?
-  image    String
 }
