@@ -1,19 +1,28 @@
-import { PrismaClient } from "@prisma/client";
+// import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
-export async function POST(req: Request) {
-  const data = await req.json();
+// export async function POST(req: Request) {
+//   const data = await req.json();
 
-  const newBooks = await prisma.books.create({
-    data: {
-      title: data.title,
-      image: data.url,
-      novelist: data.novelist,
-    },
-  });
+//   const newBooks = await prisma.books.create({
+//     data: {
+//       title: data.title,
+//       image: data.url,
+//       novelist: data.novelist,
+//     },
+//   });
 
-  return new Response(JSON.stringify(newBooks), {
-    status: 200,
-  });
+//   return new Response(JSON.stringify(newBooks), {
+//     status: 200,
+//   });
+// }
+
+import { PrismaClient } from "@prisma/client"
+
+const prisma = new PrismaClient()
+
+export async function GET() {
+  const books = await prisma.books.findMany()
+  return new Response(JSON.stringify(books), { status: 200 })
 }
