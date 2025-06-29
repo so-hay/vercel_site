@@ -101,8 +101,9 @@ export default function booksPage() {
             <img
               src={book.cover}
               alt={book.title}
-              className="w-full h-full object-cover rounded"
+              className="w-full h-full object-cover rounded"      
             />
+            
             <h2 className="mt-2 font-semibold">{book.title}</h2>
             <p className="text-sm text-gray-600">{book.author}</p>
             <h2 className="mt-2 font-semibold">{book.summary}</h2>
