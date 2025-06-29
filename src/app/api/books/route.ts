@@ -18,11 +18,12 @@
 //   });
 // }
 
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 export async function GET() {
-  const books = await prisma.books.findMany()
-  return new Response(JSON.stringify(books), { status: 200 })
+  const books = await prisma.book.findMany();
+  return NextResponse.json(books);
 }

@@ -70,7 +70,7 @@ type BookItem = {
 // ];
 
 export default function booksPage() {
-  const [bookList, setBookList] = useState<BookItem[]>([]);
+  const [bookList, setBookList] = useState<Book[]>([]);//setxxxの命名とuseStateの戻り値を一致させる
   const summaryRefs = useRef<Record<number, HTMLSummsryElement | null>>({});
   // const [playingId, setPlayingId] = useState<number | null>(null);
   // const [progress, setProgress] = useState<Record<number, number>>({});
@@ -81,7 +81,7 @@ export default function booksPage() {
     const fetchBooks = async () => {
       const res = await fetch("/api/books");
       const data = await res.json();
-      setBooksList(data);
+      setBookList(data);//setBook's'Listになっていてエラー
     };
     fetchBooks();
   }, []);
@@ -89,8 +89,9 @@ export default function booksPage() {
   return(
       <main className="min-h-screen bg-gray-100 p-8">
         <Header/>
-      <h1 className="text-2xl font-bold mb-6">おすすめ本</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <h1 className="text-2xl font-bold mb-6">お気に入り本</h1>
+      <div className="contain grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"> 
+        {/* grid-cols-1 sm:grid-cols-2 md:grid-cols-3 */}
         {bookList.map((book) => (
           <div
             key={book.id}
@@ -102,9 +103,9 @@ export default function booksPage() {
               alt={book.title}
               className="w-full h-full object-cover rounded"
             />
-            <h2 className="mt-2 font-semibold text-gray-800">{book.title}</h2>
+            <h2 className="mt-2 font-semibold">{book.title}</h2>
             <p className="text-sm text-gray-600">{book.author}</p>
-            <h2 className="mt-2 font-semibold text-gray-800">{book.summary}</h2>
+            <h2 className="mt-2 font-semibold">{book.summary}</h2>
           </div>
         ))}
       </div>
