@@ -1,3 +1,4 @@
+
 import { PrismaClient } from "@prisma/client/extension";
 import { NextResponse } from "next/server";
 
@@ -15,5 +16,5 @@ export async function POST(req: Request) {
     data: {title, author, cover, summary },
   });
 
-  return NextResponse.json(newBooks);
+  return NextResponse.json(books);
 }

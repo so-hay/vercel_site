@@ -4,15 +4,15 @@ import "slick-carousel/slick/slick.css";
 import Image from "next/image";
 import Contact from "./contact/page";
 
-const sliderSettings = {
-  autoplay: true, // スライドを自動再生
-  autoplaySpeed: 4500,
-  infinite: true, // コンテンツループ
-  arrows: false, // 「前」「次」のスライドを操作する矢印を非表示
-  cssEase: "linear",
-  speed: 500, // スライドアニメーションのスピード
-  variableWidth: true,
-};
+// const sliderSettings = {
+//   autoplay: true, // スライドを自動再生
+//   autoplaySpeed: 4500,
+//   infinite: true, // コンテンツループ
+//   arrows: false, // 「前」「次」のスライドを操作する矢印を非表示
+//   cssEase: "linear",
+//   speed: 500, // スライドアニメーションのスピード
+//   variableWidth: true,
+// };
 
 const carouselItems = [
   { image: "ami", alt: "hoshiwotugumono.jpg" },

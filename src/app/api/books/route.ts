@@ -24,6 +24,7 @@ import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 export async function GET() {
-  const books = await prisma.book.findMany();
+  const books = await prisma.book.findMany(); // ✅ 定義済み変数
   return NextResponse.json(books);
 }
+
