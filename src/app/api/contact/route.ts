@@ -1,19 +1,14 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
+import { NextResponse } from 'next/server';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-export async function POST(request: Request) {
-  const body = await request.json()
+export async function POST(req: Request) {
+  const { name, email, message } = await req.json();
 
-  const newContact = await prisma.contact.create({
-    data: {
-      name: body.name,
-      email: body.email,
-      message: body.message,
-    },
-  })
+  const contact = await prisma.contact.create({
+    data: { name, email, message },
+  });
 
-  return new Response(JSON.stringify(newContact), {
-    status: 200,
-  })
+  return NextResponse.json(contact);
 }

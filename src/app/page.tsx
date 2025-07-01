@@ -2,6 +2,7 @@ import Link from "next/link";
 // import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Image from "next/image";
+import Contact from "./contact/page";
 
 const sliderSettings = {
   autoplay: true, // スライドを自動再生
@@ -59,6 +60,7 @@ export default function Home() {
           </div>
         </Link>
       </div>
+      <Contact />
     </main>
   );
 }
