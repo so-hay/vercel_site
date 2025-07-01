@@ -27,7 +27,7 @@ export default function Contact() {
         <p className="text-blue-600">送信が完了しました！</p>
       ):(
         <form onSubmit={handleSubmit}
-               className="max-w-lg mx-auto bg-while p-6 rounded shadow">
+              className="max-w-lg mx-auto bg-while p-6 rounded shadow">
           <input className="w-full mb-4 border rounded"
             name="name"
             placeholder="お名前"
