@@ -96,7 +96,7 @@ export default function bookPage() {
         {bookList.map((book) => (
           <div
             key={book.id}
-            className="bg-white p-4 rounded shadow"
+            className="bg-white p-4 object-cover rounded shadow"
             // onClick={() => togglePlay(music.id)}ここをカーソルで見出し文表示に変えたい
             >
             <img
