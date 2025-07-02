@@ -2,16 +2,17 @@ import Link from "next/link";
 // import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Image from "next/image";
+import Contact from "./contact/page";
 
-const sliderSettings = {
-  autoplay: true, // スライドを自動再生
-  autoplaySpeed: 4500,
-  infinite: true, // コンテンツループ
-  arrows: false, // 「前」「次」のスライドを操作する矢印を非表示
-  cssEase: "linear",
-  speed: 500, // スライドアニメーションのスピード
-  variableWidth: true,
-};
+// const sliderSettings = {
+//   autoplay: true, // スライドを自動再生
+//   autoplaySpeed: 4500,
+//   infinite: true, // コンテンツループ
+//   arrows: false, // 「前」「次」のスライドを操作する矢印を非表示
+//   cssEase: "linear",
+//   speed: 500, // スライドアニメーションのスピード
+//   variableWidth: true,
+// };
 
 const carouselItems = [
   { image: "ami", alt: "hoshiwotugumono.jpg" },
@@ -31,8 +32,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-blue-300 p-8">
       <h1 className=" text-3xl font-mono mb-6">お気に入りカテゴリ</h1>
-{/* 
-      
+{/*    
     <div>スライダー
       <div {...sliderSettings}>
         {carouselItems.map((carouselItem, index) => (
@@ -54,12 +54,13 @@ export default function Home() {
             🎵 音楽
           </div>
         </Link>
-        <Link href="/books">
+        <Link href="/book">
           <div className="bg-white p-6 rounded shadow hover:bg-gray-200 transition cursor-pointer">
             📚 本
           </div>
         </Link>
       </div>
+      <Contact />
     </main>
   );
 }

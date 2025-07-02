@@ -7,7 +7,7 @@ type MusicItem = {
   title: string;
   artist: string;
   image: string;
-  fileUrl: string;
+  audio: string;
 };
 
 export default function MusicPage() {
@@ -37,24 +37,24 @@ export default function MusicPage() {
     }
   };
 
-  // 再生バー更新
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const newProgress: Record<number, number> = {};
-  //     Object.entries(audioRefs.current).forEach(([key, audio]) => {
-  //       if (audio && audio.duration > 0) {
-  //         newProgress[Number(key)] =
-  //           (audio.currentTime / audio.duration) * 100;
-  //       }
-  //     });
-  //     setProgress(newProgress);
-  //   }, 500);
+  // 再生バー更新処理
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newProgress: Record<number, number> = {};
+      Object.entries(audioRefs.current).forEach(([key, audio]) => {
+        if (audio && audio.duration > 0) {
+          newProgress[Number(key)] =
+            (audio.currentTime / audio.duration) * 100;
+        }
+      });
+      setProgress(newProgress);
+    }, 500);
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
 
-
-    useEffect(() => {
+  // 音楽データ取得
+  useEffect(() => {
     const fetchMusic = async () => {
       const res = await fetch("/api/music");
       const data = await res.json();
@@ -62,7 +62,6 @@ export default function MusicPage() {
     };
     fetchMusic();
   }, []);
-
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
@@ -97,7 +96,7 @@ export default function MusicPage() {
               ref={(el) => {
                 audioRefs.current[music.id] = el;
               }}
-              src={music.fileUrl}
+              src={music.audio}
             />
           </div>
         ))}
